@@ -11,8 +11,8 @@ docker images
 ## List containers
 ```sh
 docker container ls
-docker container ls --all
 docker ps
+docker container ls --all
 ```
 * **--all** -> list all container (running and stopped)
 
@@ -21,8 +21,8 @@ docker ps
 ```sh
 docker build --tag=<image_name> <Dockerfile_path>
 ```
-* **--tag=<image_name>** -> Image name
-* **<Dockerfile_path>** -> path to Dockerfile yaml file
+* **--tag=<image_name>** -> Image name for future reference
+* **<Dockerfile_path>** -> path to Dockerfile directory
 
 ## Run image
 ```sh
@@ -35,6 +35,7 @@ docker run -d -p <port:host>:<port_container> -p <port:host>:<port_container> <i
 ## Remove image
 ```sh
 docker rmi <image_id>
+docker rmi <image_tag>
 ```
 Image will only be removed if there are no associated containers or other images.
 
@@ -48,28 +49,42 @@ docker image prune -a
 ```
 Removes images that don't have at least one associated container
 
-# Stop container
+## Image history
+```sh
+docker history <image_name>
+```
+View layers that make up the image.
+
+# Containers
+
+## Stop container
 ```sh
 docker container stop <container_name>
 docker container stop <container_id>
 ```
 
-# Remove container
+## Remove container
 ```sh
 docker container rm <container_name>
 docker container rm <container_id>
 ```
+
+# Docker Compose
+
 # Compose
 
 ```sh
 docker-compose up -d
 ```
-Run docker compose for docker-compose.yml in current directory in dispatcherd mode
-
+Run docker compose for docker-compose.yml in current directory in dispatched mode.
+```sh
+docker-compose up --build
+```
+Run docker compose and rebuild used images.
 ```sh
 docker-compose down
 ```
-Stops services defined in doker-compose.yml in current directory
+Stops services defined in doker-compose.yml in current directory.
 
 # Enter bash in container
 
